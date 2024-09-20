@@ -1,0 +1,60 @@
+Project 0: 
+
+commands list:
+
+1.  Create the table  
+     CREATE TABLE adult_info(
+	hours_per_wage INT,
+	capital_gain INT, 
+	workclass VARCHAR(20),
+	education VARCHAR(30), 
+	education_num INT,
+	marital_status VARCHAR(30),
+	relationship VARCHAR(20),
+	race VARCHAR(25),
+	gender VARCHAR(10),
+	native_country VARCHAR(30),
+	income INT, 
+	occupation VARCHAR(40)
+	
+);
+
+
+2. Insert CSV into PostgreSQL
+
+3. Display the native country, marital status, and occupation of all the never-married men in this database
+
+SELECT native_country, marital_status, occupation  
+FROM adult_reconstruction
+WHERE marital_status = 'Never-married' AND gender = 'Male';
+
+
+4. Display the native country, marital status, and occupation of all the unmarried men in this database
+
+SELECT native_country, marital_status, occupation  
+FROM adult_reconstruction
+WHERE relationship = 'Unmarried' AND gender = 'Male';
+
+5. Display the age, education, occupation, and capital loss of all people with capital loss
+
+SELECT age, education, occupation,capital_loss  
+FROM adult_reconstruction
+WHERE capital_loss > 0;
+
+6. Display the age, education, occupation, and capital gain of all people with capital gain
+
+SELECT age, education, occupation,capital_gain  
+FROM adult_reconstruction
+WHERE capital_gain > 0;
+
+7.Display the average income of the people with an education level of some college or more
+
+SELECT AVG(income)
+FROM adult_reconstruction
+WHERE  education = 'Some college' OR education = 'Assoc-acdm' OR education = 'Bachelors' OR education = 'Masters' OR education = 'Prof-school' OR education = 'Doctorate';
+
+8. Display the average income of the people with an education level of less than some college
+
+SELECT AVG(income)
+FROM adult_reconstruction
+WHERE  NOT education  = 'Some college' OR NOT education  = 'Assoc-acdm' OR NOT education = 'Bachelors' OR NOT education = 'Masters' OR NOT education = 'Prof-school' OR NOT education = 'Doctorate';
